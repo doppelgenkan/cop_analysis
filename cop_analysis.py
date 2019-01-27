@@ -78,7 +78,7 @@ class COP:
     def file_name(self):
         '''
         Return str.
-        COPインスタンスのファイル名.
+        COPインスタンスの元ファイル名.
         '''
         return self.__fn
 
@@ -87,6 +87,14 @@ class COP:
         '''
         Return list.
         個人情報リスト.
+        
+        各インデックス要素の内容 ;
+        0 : ID番号
+        1 : 氏名
+        2 : 性別 (m or f)
+        3 : 年齢
+        4 : 身長 [cm]
+        5 : 体重 [kgw]
         '''
         lis = [self.__df0.iloc[0,1]]
         if self.__df0.iloc[2,1]=='男':
@@ -115,7 +123,7 @@ class COP:
         Return pandas DataFrame.
         計測器から得られた生のデータフレーム.
         
-        フィールドは;
+        データフレームのフィールド;
         t : 実験時間 [sec]
         Cx : 総合COPのx座標 [cm]
         Cy : 総合COPのx座標 [cm]
