@@ -357,7 +357,7 @@ class COP:
         if MKS == True:
             x = x / 100
             y = y / 100
-            range_lim = range_lim /100
+            range_lim = range_lim / 100
             ylab = 'COP[m]'
         plt.figure(dpi=dpi, figsize=figsize)
         plt.plot(x, color=color[0])
