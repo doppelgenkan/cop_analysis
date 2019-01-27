@@ -26,11 +26,11 @@ def lpfilter(fl, cutoff_hz, samp_hz=1000, init=0, rmdc=False):
         Sampling data.
     cutoff_hz : int
         Cutoff frequency of lowpass filter.
-    samp_hz : int, optional
+    samp_hz : int, optional (1000)
         Sampling frequency. default value is 1000[Hz].
-    init : int or float, optional
+    init : int or float, optional (0)
         Initial time[sec]. Initial cutoff numbers of data is given by sampling-frequency times init.
-    rmdc : bool, optional
+    rmdc : bool, optional (False)
         Removal of direct-current.
     '''
     arr = _cutdata4fft(fl, init * samp_hz)
@@ -50,11 +50,11 @@ class COP:
     ----------
     fn : str, ファイル名
         重心動揺計から出力されたCSVデータ．
-    cutoff_hz : int, optional
+    cutoff_hz : int, optional (5)
         ローパスフィルタのカットオフ周波数．
-    samp_hz : int, optional
+    samp_hz : int, optional (100)
         重心動揺計のサンプリング周波数．
-    init : int または float, optional
+    init : int または float, optional (5)
         初期時刻．
     '''
     def __init__(self, fn, cutoff_hz=5, samp_hz=100, init=5):
@@ -244,19 +244,19 @@ class COP:
 
         Parameters
         ----------
-        transformed : bool, optional
+        transformed : bool, optional (True)
             Falseの場合，重心動揺計座標系でのCOP軌跡を描画. デフォルト値はTrue.
-        dpi : int, optional
+        dpi : int, optional (300)
             解像度の指定. デフォルト値は300dpi.
-        figsize : taple または list, optional
+        figsize : taple または list, optional ((5 ,5))
             グラフサイズの指定. デフォルト値は(5, 5).
-        color : str, optional
+        color : str, optional ('black')
             カラーの指定. デフォルト値は'black'.
-        title : str, optional
+        title : str, optional (None)
             グラフタイトルの指定. デフォルト値はNone.
-        MKS : bool, optional
-            MKS単位系の指定. デフォルトはCGS単位系.
-        islegend : bool, optional
+        MKS : bool, optional (False)
+            MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
+        islegend : bool, optional (False)
             凡例の付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
 
         '''
@@ -311,19 +311,19 @@ class COP:
 
         Parameters
         ----------
-        dpi : int, optional
+        dpi : int, optional (300)
             解像度の指定. デフォルト値は300dpi.
-        figsize : taple または list, optional
+        figsize : taple または list, optional ((5, 5))
             グラフサイズの指定. デフォルト値は(5, 5).
-        color : str, optional
+        color : str, optional ('black')
             カラーの指定. デフォルト値は'black'.
-        title : str, optional
+        title : str, optional (None)
             グラフタイトルの指定. デフォルト値はNone.
-        MKS : bool, optional
+        MKS : bool, optional (False)
             MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
-        islegend : bool, optional
+        islegend : bool, optional (True)
             凡例の付けるかどうか. デフォルトでは付ける. Falseの場合，凡例を付けない. デフォルト値はTrue.
-        isdrawy : bool, optional
+        isdrawy : bool, optional (True)
             Falseの場合，y成分を描画しない. デフォルト値はTrue.
         '''
         dpi      = kwargs.get('dpi', 150)
