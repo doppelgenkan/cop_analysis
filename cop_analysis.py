@@ -274,7 +274,7 @@ class COP:
             カラーの指定. デフォルト値は'black'.
         title : str, optional (None)
             グラフタイトルの指定. デフォルト値はNone.
-        MKS : bool, optional (False)
+        isMKS : bool, optional (False)
             MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
         islegend : bool, optional (False)
             凡例の付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
@@ -285,7 +285,7 @@ class COP:
         figsize     = kwargs.get('figsize', (5, 5))
         color       = kwargs.get('color', 'black')
         title       = kwargs.get('title', None)
-        MKS         = kwargs.get('MKS', False)
+        isMKS       = kwargs.get('isMKS', False)
         islegend    = kwargs.get('islegend', False)
         if transformed == False:
             r = self.device_r
@@ -306,7 +306,7 @@ class COP:
         y = r.T[1]
         xlab = 'x[cm]'
         ylab = 'y[cm]'
-        if MKS == True:
+        if isMKS == True:
             x = x / 100
             y = y / 100
             range_lim = range_lim /100
@@ -339,7 +339,7 @@ class COP:
             カラーの指定. デフォルト値は'black'.
         title : str, optional (None)
             グラフタイトルの指定. デフォルト値はNone.
-        MKS : bool, optional (False)
+        isMKS : bool, optional (False)
             MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
         islegend : bool, optional (True)
             凡例の付けるかどうか. デフォルトでは付ける. Falseの場合，凡例を付けない. デフォルト値はTrue.
@@ -350,7 +350,7 @@ class COP:
         figsize  = kwargs.get('figsize', (10,5))
         color    = kwargs.get('color', ('black','gray'))
         title    = kwargs.get('title', None)
-        MKS      = kwargs.get('MKS', False)
+        isMKS      = kwargs.get('isMKS', False)
         islegend = kwargs.get('islegend', True)
         isdrawy  = kwargs.get('isdrawy', True)
         r = self.transformed_r
@@ -362,7 +362,7 @@ class COP:
         if abs(range_min) > range_max:
             range_max = abs(range_min)
         range_lim = range_max * 1.25
-        if MKS == True:
+        if isMKS == True:
             x = x / 100
             y = y / 100
             range_lim = range_lim / 100
