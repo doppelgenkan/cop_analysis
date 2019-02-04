@@ -266,8 +266,8 @@ class COP:
         ----------
         transformed : bool, optional (True)
             Falseの場合，重心動揺計座標系でのCOP軌跡を描画. デフォルト値はTrue.
-        dpi : int, optional (300)
-            解像度の指定. デフォルト値は300dpi.
+        dpi : int, optional (150)
+            解像度の指定. デフォルト値は150dpi.
         figsize : taple または list, optional ((5 ,5))
             グラフサイズの指定. デフォルト値は(5, 5).
         color : str, optional ('black')
@@ -331,8 +331,8 @@ class COP:
 
         Parameters
         ----------
-        dpi : int, optional (300)
-            解像度の指定. デフォルト値は300dpi.
+        dpi : int, optional (150)
+            解像度の指定. デフォルト値は150dpi.
         figsize : taple または list, optional ((5, 5))
             グラフサイズの指定. デフォルト値は(5, 5).
         color : str, optional ('black')
