@@ -264,7 +264,7 @@ class COP:
 
         Parameters
         ----------
-        transformed : bool, optional (True)
+        istransformed : bool, optional (True)
             Falseの場合，重心動揺計座標系でのCOP軌跡を描画. デフォルト値はTrue.
         dpi : int, optional (150)
             解像度の指定. デフォルト値は150dpi.
@@ -280,14 +280,14 @@ class COP:
             凡例の付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
 
         '''
-        transformed = kwargs.get('transformed', True)
+        istransformed = kwargs.get('transformed', True)
         dpi         = kwargs.get('dpi', 150)
         figsize     = kwargs.get('figsize', (5, 5))
         color       = kwargs.get('color', 'black')
         title       = kwargs.get('title', None)
         isMKS       = kwargs.get('isMKS', False)
         islegend    = kwargs.get('islegend', False)
-        if transformed == False:
+        if istransformed == False:
             r = self.device_r
             center = self.__pca.mean_
             range_min = np.min(r.T[1]) - center[1]
