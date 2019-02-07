@@ -87,7 +87,7 @@ class COP:
         '''
         Return list.
         個人情報リスト.
-        
+
         各インデックスの内容 ;
         0 : ID番号
         1 : 氏名
@@ -122,7 +122,7 @@ class COP:
         '''
         Return pandas DataFrame.
         計測器から得られた生のデータフレーム.
-        
+
         データフレームのフィールド;
         t : 実験時間 [sec]
         Cx : 総合COPのx座標 [cm]
@@ -195,7 +195,7 @@ class COP:
     def device_xy_range(self):
         '''
         Return numpy array.
-        計測器座標系におけるCOP点群のxレンジとyレンジ.
+        計測器座標系におけるCOP点群のxレンジとyレンジ.(xは左右方向，yは前後方向)
         '''
         r = self.device_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -204,7 +204,7 @@ class COP:
     def xy_range(self):
         '''
         Return numpy array.
-        主軸成分におけるCOP点群のxレンジとyレンジ.
+        主軸成分におけるCOP点群のxレンジとyレンジ.(xは前後方向，yは左右方向)
         '''
         r = self.transformed_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -213,7 +213,7 @@ class COP:
     def device_xy_range_ratio(self):
         '''
         Return numpy array.
-        計測器座標系におけるCOP点群のxレンジとyレンジのレンジの構成比率.
+        計測器座標系におけるCOP点群のxレンジとyレンジのレンジの構成比率.(xは左右方向，yは前後方向)
         '''
         total_range = self.device_xy_range[0] + self.device_xy_range[1]
         return np.array([self.device_xy_range[0], self.device_xy_range[1]]) / total_range
@@ -222,7 +222,7 @@ class COP:
     def xy_range_ratio(self):
         '''
         Return numpy array.
-        主軸系におけるCOP点群のxレンジとyレンジの構成比率.
+        主軸系におけるCOP点群のxレンジとyレンジの構成比率.(xは前後方向，yは左右方向)
         '''
         total_range = self.xy_range[0] + self.xy_range[1]
         return np.array([self.xy_range[0], self.xy_range[1]]) / total_range
@@ -246,7 +246,7 @@ class COP:
         r = self.transformed_r
         r_range = np.max(r, axis=0) - np.min(r, axis=0)
         return r_range[0] * r_range[1]
-    
+
     @property
     def trajectory_length(self):
         '''
@@ -257,7 +257,8 @@ class COP:
         x = r.T[0]
         y = r.T[1]
         return np.sqrt( np.sum(diff(x)**2 + diff(y)**2) )
-        
+
+
     def draw_trajectory(self, **kwargs):
         '''
         COP軌跡の描画.
@@ -324,6 +325,7 @@ class COP:
             plt.title(title, loc='left')
         plt.grid()
         plt.show()
+
 
     def draw_time_series(self, **kwargs):
         '''
