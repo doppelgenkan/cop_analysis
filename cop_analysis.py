@@ -282,12 +282,12 @@ class COP:
 
         '''
         istransformed = kwargs.get('transformed', True)
-        dpi         = kwargs.get('dpi', 150)
-        figsize     = kwargs.get('figsize', (5, 5))
-        color       = kwargs.get('color', 'black')
-        title       = kwargs.get('title', None)
-        isMKS       = kwargs.get('isMKS', False)
-        islegend    = kwargs.get('islegend', False)
+        dpi           = kwargs.get('dpi', 150)
+        figsize       = kwargs.get('figsize', (5, 5))
+        color         = kwargs.get('color', 'black')
+        title         = kwargs.get('title', None)
+        isMKS         = kwargs.get('isMKS', False)
+        islegend      = kwargs.get('islegend', False)
         if istransformed == False:
             r = self.device_r
             center = self.__pca.mean_
