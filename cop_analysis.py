@@ -375,7 +375,7 @@ class COP:
         figsize  = kwargs.get('figsize', (10,5))
         color    = kwargs.get('color', ('black','gray'))
         title    = kwargs.get('title', None)
-        isMKS      = kwargs.get('isMKS', False)
+        isMKS    = kwargs.get('isMKS', False)
         islegend = kwargs.get('islegend', True)
         isdrawy  = kwargs.get('isdrawy', True)
         r = self.transformed_r
