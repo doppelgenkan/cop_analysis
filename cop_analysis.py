@@ -96,25 +96,30 @@ class COP:
         4 : 身長 [cm]
         5 : 体重 [kgw]
         '''
-        lis = [self.__df0.iloc[0,1]]
-        if self.__df0.iloc[2,1]=='男':
+        lis = [self.__df0.iloc[0, 1]]
+        if self.__df0.iloc[2,1 ] == '男':
             lis.append('m')
-        elif self.__df0.iloc[2,1]=='女':
+        elif self.__df0.iloc[2, 1] == '女':
             lis.append('f')
         else:
             lis.append('unknown')
         try:
-            lis.append(int(float(self.__df0.iloc[3,1])))
+            lis.append(int(float(self.__df0.iloc[3, 1])))
         except:
-            lis.append(self.__df0.iloc[3,1])
+            lis.append(self.__df0.iloc[3, 1])
         try:
-            lis.append(float(self.__df0.iloc[4,1]))
+            lis.append(float(self.__df0.iloc[4, 1]))
         except:
-            lis.append(self.__df0.iloc[4,1])
+            lis.append(self.__df0.iloc[4, 1])
         try:
-            lis.append(float(self.__df0.iloc[5,1]))
+            lis.append(float(self.__df0.iloc[5, 1]))
         except:
-            lis.append(self.__df0.iloc[5,1])
+            lis.append(self.__df0.iloc[5, 1])
+        if self.__df0.iloc[0,3] == '開眼':
+            lis.append('sight')
+        elif self.__df0.iloc[0,3] == '閉眼':
+            lis.append('b')
+        lis.append(self.__df0.iloc[0,4])
         return lis
 
     @property
