@@ -279,7 +279,7 @@ class COP:
         Return float.
         主軸成分におけるCOP点群のx方向RMSとy方向RMSを軸とした楕円面積.(xは前後方向，yは左右方向)
         '''
-
+        return np.pi * xy_rms[0] * xy_rms[1]
 
 
     def draw_trajectory(self, **kwargs):
