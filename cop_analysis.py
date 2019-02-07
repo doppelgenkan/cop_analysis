@@ -260,10 +260,18 @@ class COP:
         Return float.
         COP軌跡長.
         '''
-        r = self.transformed_
+        r = self.transformed_r
         x = r.T[0]
         y = r.T[1]
         return np.sqrt( np.sum(diff(x)**2 + diff(y)**2) )
+
+    @property
+    def xy_rms(self):
+        '''
+        Return numpy array.
+        主軸成分におけるCOP点群のx方向RMSとy方向RMS.(xは前後方向，yは左右方向)
+        '''
+        return np.array([np.sqrt(self.eigen_values)])
 
 
     def draw_trajectory(self, **kwargs):
