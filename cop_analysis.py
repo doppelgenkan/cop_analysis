@@ -271,7 +271,7 @@ class COP:
         Return numpy array.
         主軸成分におけるCOP点群のx方向RMSとy方向RMS.(xは前後方向，yは左右方向)
         '''
-        return np.array([np.sqrt(self.eigen_values)])
+        return np.array(np.sqrt(self.eigen_values))
 
     @property
     def xy_rms_ellipse_area(self):
