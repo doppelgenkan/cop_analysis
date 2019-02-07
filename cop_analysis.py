@@ -95,6 +95,7 @@ class COP:
         3 : 年齢
         4 : 身長 [cm]
         5 : 体重 [kgw]
+        6 : 開眼 or 閉眼
         '''
         lis = [self.__df0.iloc[0, 1]]
         if self.__df0.iloc[2,1 ] == '男':
@@ -118,8 +119,9 @@ class COP:
         if self.__df0.iloc[0,3] == '開眼':
             lis.append('sight')
         elif self.__df0.iloc[0,3] == '閉眼':
-            lis.append('b')
-        lis.append(self.__df0.iloc[0,4])
+            lis.append('blind')
+        else:
+            lis.append('unknown')
         return lis
 
     @property
