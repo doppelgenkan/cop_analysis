@@ -301,7 +301,7 @@ class COP:
         isMKS : bool, optional (False)
             MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
         islegend : bool, optional (False)
-            凡例の付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
+            凡例を付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
 
         '''
         istransformed = kwargs.get('transformed', True)
@@ -367,7 +367,7 @@ class COP:
         isMKS : bool, optional (False)
             MKS単位系の指定. デフォルトはCGS単位系. デフォルト値はFalse.
         islegend : bool, optional (True)
-            凡例の付けるかどうか. デフォルトでは付ける. Falseの場合，凡例を付けない. デフォルト値はTrue.
+            凡例を付けるかどうか. デフォルトでは付ける. Falseの場合，凡例を付けない. デフォルト値はTrue.
         isdrawy : bool, optional (True)
             Falseの場合，y成分を描画しない. デフォルト値はTrue.
         '''
