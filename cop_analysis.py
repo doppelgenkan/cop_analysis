@@ -172,10 +172,10 @@ class COP:
         Cy : 総合COPのx座標 [cm]
         Lx : 左足COPのx座標 [cm]
         Ly : 左足COPのx座標 [cm]
-        Lweight : 左足重量 [kgw]
+        Lweight : 左足にかかる重量 [kgw]
         Rx : 右足COPのx座標 [cm]
         Ry : 右足COPのx座標 [cm]
-        Rweight : 右足重量 [kgw]
+        Rweight : 右足にかかる重量 [kgw]
         '''
         self.__df.columns=['t','Cx','Cy','Lx','Ly','Lweight','Rx','Ry','Rweight']
         return self.__df
