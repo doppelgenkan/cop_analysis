@@ -50,20 +50,24 @@ class COP:
     Parameters
     ----------
     fn : str, ファイル名
-        重心動揺計から出力されたCSVデータ．
+        重心動揺計から出力されたCSVデータ.
     cutoff_hz : int, optional (5)
-        ローパスフィルタのカットオフ周波数．
+        ローパスフィルタのカットオフ周波数.
     samp_hz : int, optional (100)
-        重心動揺計のサンプリング周波数．
+        重心動揺計のサンプリング周波数.
     init : int または float, optional (5)
-        初期時刻．
+        初期時刻.
     '''
-    def __init__(self, fn, cutoff_hz=5, samp_hz=100, init=5):
-        self.__init = init
+    def __init__(self, fn, **kwargs):
+        cutoff_hz = kwargs.get('cutoff_hz', 5)
+        samp_hz   = kwargs.get('samp_hz', 100)
+        init      = kwargs.get('init', 5)
+        self.__fn = fn
+        self.__cutoff_hz = cutoff_hz
         self.__samp_hz = samp_hz
+        self.__init = init
         df0 = pd.read_csv(fn, encoding='shift_jis', header=None, nrows=6)
         df = pd.read_csv(fn, encoding='shift_jis', skiprows=7, header=None)
-        self.__fn = fn
         r1 = lpfilter(np.array(df[1]), cutoff_hz, samp_hz=samp_hz, init=init, rmdc=False)
         r2 = lpfilter(np.array(df[2]), cutoff_hz, samp_hz=samp_hz, init=init, rmdc=False)
         self.__r = np.array([r1, r2]).T
@@ -78,9 +82,41 @@ class COP:
     def file_name(self):
         '''
         Return str.
-        COPインスタンスの元ファイル名.
+        COPデータの読み込みファイル名.
         '''
         return self.__fn
+
+    @property
+    def sampling_hz(self):
+        '''
+        Return int.
+        COPデータのサンプリング周波数.
+        '''
+        return self.__samp_hz
+
+    @property
+    def cutoff_hz(self):
+        '''
+        Return int.
+        COPインスタンスのローパスフィルタ・カットオフ周波数.
+        '''
+        return self.__cutoff_hz
+
+    @property
+    def initial_time(self):
+        '''
+        Rerurn float.
+        COPインスタンスの初期時刻.
+        '''
+        return self.__init
+
+    @property
+    def length(self):
+        '''
+        Return int.
+        COPインスタンスに含まれる各種データの長さ.
+        '''
+        return self.__len
 
     @property
     def personal_info(self):
