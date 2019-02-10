@@ -230,7 +230,7 @@ class COP:
     def contribution_ratio(self):
         '''
         Return numpy array.
-        COP点群のそれぞれの主軸への分散寄与率.
+        COP点群のそれぞれの主軸への因子寄与率.
         '''
         return self.__pca.explained_variance_ratio_
 
