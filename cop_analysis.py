@@ -241,7 +241,7 @@ class COP:
     def device_xy_range(self):
         '''
         Return numpy array.
-        計測器座標系におけるCOP点群のxレンジとyレンジ.(xは左右方向，yは前後方向) [cm]
+        計測器座標系におけるCOP点群のxレンジとyレンジ [cm]. (xは左右方向，yは前後方向)
         '''
         r = self.device_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -250,7 +250,7 @@ class COP:
     def xy_range(self):
         '''
         Return numpy array.
-        主軸成分におけるCOP点群のxレンジとyレンジ.(xは前後方向，yは左右方向) [cm]
+        主軸成分におけるCOP点群のxレンジとyレンジ [cm]. (xは前後方向，yは左右方向)
         '''
         r = self.transformed_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -259,7 +259,7 @@ class COP:
     def device_xy_range_ratio(self):
         '''
         Return numpy array.
-        計測器座標系におけるCOP点群のxレンジとyレンジのレンジの構成比率.(xは左右方向，yは前後方向)
+        計測器座標系におけるCOP点群のxレンジとyレンジのレンジの構成比率. (xは左右方向，yは前後方向)
         '''
         total_range = self.device_xy_range[0] + self.device_xy_range[1]
         return np.array([self.device_xy_range[0], self.device_xy_range[1]]) / total_range
@@ -268,7 +268,7 @@ class COP:
     def xy_range_ratio(self):
         '''
         Return numpy array.
-        主軸系におけるCOP点群のxレンジとyレンジの構成比率.(xは前後方向，yは左右方向)
+        主軸系におけるCOP点群のxレンジとyレンジの構成比率. (xは前後方向，yは左右方向)
         '''
         total_range = self.xy_range[0] + self.xy_range[1]
         return np.array([self.xy_range[0], self.xy_range[1]]) / total_range
@@ -277,7 +277,7 @@ class COP:
     def device_rectangle_area(self):
         '''
         Return float.
-        計測器座標系におけるCOP点群の矩形面積. [cm2]
+        計測器座標系におけるCOP点群の矩形面積 [cm2].
         '''
         r = self.device_r
         r_range = np.max(r, axis=0) - np.min(r, axis=0)
@@ -287,7 +287,7 @@ class COP:
     def rectangle_area(self):
         '''
         Return float.
-        主軸系におけるCOP点群の矩形面積. [cm2]
+        主軸系におけるCOP点群の矩形面積 [cm2].
         '''
         r = self.transformed_r
         r_range = np.max(r, axis=0) - np.min(r, axis=0)
@@ -297,7 +297,7 @@ class COP:
     def trajectory_length(self):
         '''
         Return float.
-        COP軌跡長. [cm]
+        COP軌跡長 [cm].
         '''
         r = self.transformed_r
         x = r.T[0]
@@ -308,7 +308,7 @@ class COP:
     def xy_rms(self):
         '''
         Return numpy array.
-        主軸成分におけるCOP点群のx方向RMSとy方向RMS.(xは前後方向，yは左右方向) [cm]
+        主軸成分におけるCOP点群のx方向RMSとy方向RMS [cm]. (xは前後方向，yは左右方向)
         '''
         return np.array(np.sqrt(self.eigen_values))
 
@@ -316,7 +316,7 @@ class COP:
     def rms_rectangle_area(self):
         '''
         Return float.
-        主軸成分におけるCOP点群のx方向RMSの2倍とy方向RMSの2倍を辺の長さとした矩形面積.(xは前後方向，yは左右方向) [cm2]
+        主軸成分におけるCOP点群のx方向RMSの2倍とy方向RMSの2倍を辺の長さとした矩形面積 [cm2]. (xは前後方向，yは左右方向)
         '''
         return 4 * self.xy_rms[0] * self.xy_rms[1]
 
@@ -324,12 +324,12 @@ class COP:
     def set_cutoff_hz(self, cutoff_hz):
         '''
         Return None.
-        COPインスタンスのローパスフィルタ・カットオフ周波数の変更. [Hz]
+        COPインスタンスのローパスフィルタ・カットオフ周波数の変更 [Hz].
 
         Parameter
         ---------
         cutoff_hz : int
-            ローパスフィルタのカットオフ周波数 [Hz]
+            ローパスフィルタのカットオフ周波数 [Hz].
         '''
         print(f'カットオフ周波数が{self.__cutoff_hz}[Hz]から{cutoff_hz}[Hz]に変更されました.')
         self.__init__(self.__fn, cutoff_hz=cutoff_hz, init=self.__init)
@@ -338,7 +338,7 @@ class COP:
     def set_initial_time(self, init):
         '''
         Return None.
-        COPインスタンスの初期時刻の変更. [sec]
+        COPインスタンスの初期時刻の変更 [sec].
 
         Parameter
         ---------
@@ -347,6 +347,15 @@ class COP:
         '''
         print(f'初期時刻が{self.__init}[sec]から{init}[sec]に変更されました.')
         self.__init__(self.__fn, cutoff_hz=self.__cutoff_hz, init=init)
+
+
+    def reset_opt_args(self):
+        '''
+        Return None.
+        COPインスタンスのオプション引数のリセット.
+            cutoff_hz -> 5,  init -> 5
+        '''
+        self.__init__(self.__fn)
 
 
     def draw_trajectory(self, **kwargs):
