@@ -17,7 +17,7 @@ def _lpfilter(fl, kc, rmdc=False):
         Fk[0] = 0
     return np.real(np.fft.ifft(Fk))
 
-def lpfilter(fl, cutoff_hz, samp_hz=1000, init=0, rmdc=False):
+def lpfilter(fl, cutoff_hz, **kwargs):
     '''
     Retern lowpass filtering array of sampling array.
 
@@ -34,6 +34,9 @@ def lpfilter(fl, cutoff_hz, samp_hz=1000, init=0, rmdc=False):
     rmdc : bool, optional (False)
         Removal of direct-current.
     '''
+    samp_hz = kwargs.get('samp_hz', 1000)
+    init    = kwargs.get('init', 0)
+    rmdc    = kwargs.get('rmdc', False)
     arr = _cutdata4fft(fl, int(init * samp_hz))
     arr_len = len(arr)
     if cutoff_hz >= samp_hz:
