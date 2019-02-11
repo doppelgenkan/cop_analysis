@@ -55,11 +55,11 @@ class COP:
     fn : str, ファイル名
         重心動揺計から出力されたCSVデータ.
     cutoff_hz : int, optional (5)
-        ローパスフィルタのカットオフ周波数.
+        ローパスフィルタのカットオフ周波数 [Hz].
     samp_hz : int, optional (100)
-        重心動揺計のサンプリング周波数.
+        重心動揺計のサンプリング周波数 [Hz].
     init : int または float, optional (5)
-        初期時刻.
+        初期時刻 [sec].
     '''
     def __init__(self, fn, **kwargs):
         cutoff_hz = kwargs.get('cutoff_hz', 5)
@@ -93,7 +93,7 @@ class COP:
     def sampling_hz(self):
         '''
         Return int.
-        COPデータのサンプリング周波数.
+        COPデータのサンプリング周波数 [Hz].
         '''
         return self.__samp_hz
 
@@ -101,7 +101,7 @@ class COP:
     def cutoff_hz(self):
         '''
         Return int.
-        COPインスタンスのローパスフィルタ・カットオフ周波数.
+        COPインスタンスのローパスフィルタ・カットオフ周波数 [Hz].
         '''
         return self.__cutoff_hz
 
@@ -109,7 +109,7 @@ class COP:
     def initial_time(self):
         '''
         Rerurn float.
-        COPインスタンスの初期時刻.
+        COPインスタンスの初期時刻 [sec].
         '''
         return self.__init
 
@@ -117,7 +117,7 @@ class COP:
     def length(self):
         '''
         Return int.
-        COPインスタンスに含まれる各種データの長さ.
+        COPインスタンスに含まれる各種データの長さ [cm].
         '''
         return self.__len
 
@@ -187,7 +187,7 @@ class COP:
     def device_r(self):
         '''
         Return numpy array.
-        計測器COP位置ベクトルの時系列シリーズ.
+        計測器COP位置ベクトルの時系列シリーズ [cm].
         '''
         return self.__r
 
@@ -195,7 +195,7 @@ class COP:
     def transformed_r(self):
         '''
         Return numpy array.
-        主軸変換後のCOP位置ベクトルの時系列シリーズ.
+        主軸変換後のCOP位置ベクトルの時系列シリーズ [cm].
         '''
         if self.__pca.components_[0,1] < 0:
             return -self.__pca.transform(self.__r)
@@ -225,7 +225,7 @@ class COP:
     def rot_angle(self):
         '''
         Return float.
-        計測器座標系と主軸座標系の角度差[rad].
+        計測器座標系と主軸座標系の角度差 [rad].
         '''
         return np.pi/2 - np.arccos(self.eigen_vector[0,0])
 
@@ -241,7 +241,7 @@ class COP:
     def device_xy_range(self):
         '''
         Return numpy array.
-        計測器座標系におけるCOP点群のxレンジとyレンジ.(xは左右方向，yは前後方向)
+        計測器座標系におけるCOP点群のxレンジとyレンジ.(xは左右方向，yは前後方向) [cm]
         '''
         r = self.device_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -250,7 +250,7 @@ class COP:
     def xy_range(self):
         '''
         Return numpy array.
-        主軸成分におけるCOP点群のxレンジとyレンジ.(xは前後方向，yは左右方向)
+        主軸成分におけるCOP点群のxレンジとyレンジ.(xは前後方向，yは左右方向) [cm]
         '''
         r = self.transformed_r
         return np.max(r, axis=0) - np.min(r, axis=0)
@@ -277,7 +277,7 @@ class COP:
     def device_rectangle_area(self):
         '''
         Return float.
-        計測器座標系におけるCOP点群の矩形面積.
+        計測器座標系におけるCOP点群の矩形面積. [cm2]
         '''
         r = self.device_r
         r_range = np.max(r, axis=0) - np.min(r, axis=0)
@@ -287,7 +287,7 @@ class COP:
     def rectangle_area(self):
         '''
         Return float.
-        主軸系におけるCOP点群の矩形面積.
+        主軸系におけるCOP点群の矩形面積. [cm2]
         '''
         r = self.transformed_r
         r_range = np.max(r, axis=0) - np.min(r, axis=0)
@@ -297,7 +297,7 @@ class COP:
     def trajectory_length(self):
         '''
         Return float.
-        COP軌跡長.
+        COP軌跡長. [cm]
         '''
         r = self.transformed_r
         x = r.T[0]
@@ -308,7 +308,7 @@ class COP:
     def xy_rms(self):
         '''
         Return numpy array.
-        主軸成分におけるCOP点群のx方向RMSとy方向RMS.(xは前後方向，yは左右方向)
+        主軸成分におけるCOP点群のx方向RMSとy方向RMS.(xは前後方向，yは左右方向) [cm]
         '''
         return np.array(np.sqrt(self.eigen_values))
 
@@ -316,7 +316,7 @@ class COP:
     def rms_rectangle_area(self):
         '''
         Return float.
-        主軸成分におけるCOP点群のx方向RMSの2倍とy方向RMSの2倍を辺の長さとした矩形面積.(xは前後方向，yは左右方向)
+        主軸成分におけるCOP点群のx方向RMSの2倍とy方向RMSの2倍を辺の長さとした矩形面積.(xは前後方向，yは左右方向) [cm2]
         '''
         return 4 * self.xy_rms[0] * self.xy_rms[1]
 
@@ -324,12 +324,12 @@ class COP:
     def set_cutoff_hz(self, cutoff_hz):
         '''
         Return None.
-        COPインスタンスのローパスフィルタ・カットオフ周波数の変更.
+        COPインスタンスのローパスフィルタ・カットオフ周波数の変更. [Hz]
 
         Parameter
         ---------
         cutoff_hz : int
-            ローパスフィルタのカットオフ周波数[Hz]
+            ローパスフィルタのカットオフ周波数 [Hz]
         '''
         print(f'カットオフ周波数が{self.__cutoff_hz}[Hz]から{cutoff_hz}[Hz]に変更されました.')
         self.__init__(self.__fn, cutoff_hz=cutoff_hz, init=self.__init)
@@ -338,12 +338,12 @@ class COP:
     def set_initial_time(self, init):
         '''
         Return None.
-        COPインスタンスの初期時刻の変更.
+        COPインスタンスの初期時刻の変更. [sec]
 
         Parameter
         ---------
         init : int or float, ただし小数第2位まで
-            初期時刻[sec]
+            初期時刻 [sec]
         '''
         print(f'初期時刻が{self.__init}[sec]から{init}[sec]に変更されました.')
         self.__init__(self.__fn, cutoff_hz=self.__cutoff_hz, init=init)
