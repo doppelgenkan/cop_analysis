@@ -310,12 +310,12 @@ class COP:
         return np.array(np.sqrt(self.eigen_values))
 
     @property
-    def xy_rms_ellipse_area(self):
+    def rms_rectangle_area(self):
         '''
         Return float.
-        主軸成分におけるCOP点群のx方向RMSとy方向RMSを軸とした楕円面積.(xは前後方向，yは左右方向)
+        主軸成分におけるCOP点群のx方向RMSの2倍とy方向RMSの2倍を辺の長さとした矩形面積.(xは前後方向，yは左右方向)
         '''
-        return np.pi * self.xy_rms[0] * self.xy_rms[1]
+        return 4 * self.xy_rms[0] * self.xy_rms[1]
 
 
     def set_cutoff_hz(self, cutoff_hz):
