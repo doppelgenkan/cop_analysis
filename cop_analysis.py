@@ -368,7 +368,7 @@ class COP:
             凡例を付けるかどうか. デフォルトでは付けない. Trueの場合，xの凡例を付ける. デフォルト値はFalse.
 
         '''
-        istransformed = kwargs.get('transformed', True)
+        istransformed = kwargs.get('istransformed', True)
         dpi           = kwargs.get('dpi', 150)
         figsize       = kwargs.get('figsize', (5, 5))
         color         = kwargs.get('color', 'black')
