@@ -320,6 +320,7 @@ class COP:
 
     def set_cutoff_hz(self, cutoff_hz):
         '''
+        Return None.
         COPインスタンスのローパスフィルタ・カットオフ周波数の変更.
 
         Parameter
@@ -333,11 +334,12 @@ class COP:
 
     def set_initial_time(self, init):
         '''
+        Return None.
         COPインスタンスの初期時刻の変更.
 
         Parameter
         ---------
-        init : int or float, 小数第2位まで
+        init : int or float, ただし小数第2位まで
             初期時刻[sec]
         '''
         print(f'初期時刻が{self.__init}[sec]から{init}[sec]に変更されました.')
