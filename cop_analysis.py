@@ -34,7 +34,7 @@ def lpfilter(fl, cutoff_hz, samp_hz=1000, init=0, rmdc=False):
     rmdc : bool, optional (False)
         Removal of direct-current.
     '''
-    arr = _cutdata4fft(fl, init * samp_hz)
+    arr = _cutdata4fft(fl, int(init * samp_hz))
     arr_len = len(arr)
     if cutoff_hz >= samp_hz:
         return arr
@@ -318,6 +318,32 @@ class COP:
         return np.pi * self.xy_rms[0] * self.xy_rms[1]
 
 
+    def set_cutoff_hz(self, cutoff_hz):
+        '''
+        COPインスタンスのローパスフィルタ・カットオフ周波数の変更.
+
+        Parameter
+        ---------
+        cutoff_hz : int
+            ローパスフィルタのカットオフ周波数[Hz]
+        '''
+        print(f'カットオフ周波数が{self.__cutoff_hz}[Hz]から{cutoff_hz}[Hz]に変更されました.')
+        self.__init__(self.__fn, cutoff_hz=cutoff_hz, init=self.__init)
+
+
+    def set_initial_time(self, init):
+        '''
+        COPインスタンスの初期時刻の変更.
+
+        Parameter
+        ---------
+        init : int or float, 小数第2位まで
+            初期時刻[sec]
+        '''
+        print(f'初期時刻が{self.__init}[sec]から{init}[sec]に変更されました.')
+        self.__init__(self.__fn, cutoff_hz=self.__cutoff_hz, init=init)
+
+
     def draw_trajectory(self, **kwargs):
         '''
         COP軌跡の描画.
@@ -434,8 +460,8 @@ class COP:
             plt.plot(y, color=color[1])
         plt.ylim([-range_lim, range_lim])
         plt.ylabel(ylab)
-        seq_list = list(range(0, self.__len, self.__samp_hz * self.__init))
-        time_list = list(range(self.__init, self.__len//self.__samp_hz + self.__init + 1, 5))
+        seq_list = np.arange(0, self.__len, self.__samp_hz * 5)
+        time_list = np.arange(self.__init, self.__len//self.__samp_hz + self.__init + 1, 5)
         plt.xticks(seq_list, time_list)
         plt.xlabel('time[sec]')
         if islegend == True:
