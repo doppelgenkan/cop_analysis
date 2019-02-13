@@ -498,7 +498,7 @@ class COP:
         COP動揺のアニメーション.
 
         Parameters
-        __________
+        ----------
         scale_ratio : int or float, optional (1)
             ウィンドウを600x600ピクセルの何倍に設定するか. デフォルトは1.
         isline : bool, optional (True)
