@@ -507,17 +507,17 @@ class COP:
         r = self.transformed_r * 150 * scale
         turtle.clearscreen()
         turtle.setup(width=600 * scale, height=600 * scale)
-        self.ttl = turtle.Turtle()
-        self.ttl.reset()
-        self.ttl.shape('circle')
-        self.ttl.shapesize(0.7, 0.7)
-        self.ttl.penup()
-        self.ttl.setpos(r[0])
+        ttl = turtle.Turtle()
+        ttl.reset()
+        ttl.shape('circle')
+        ttl.shapesize(0.7, 0.7)
+        ttl.penup()
+        ttl.setpos(r[0])
         if isline:
-            self.ttl.pendown()
-        self.ttl.pensize(2)
+            ttl.pendown()
+        ttl.pensize(2)
         print('アニメーションが終わるまで何もしないでください.')
         for p in r:
-            self.ttl.setpos(p)
+            ttl.setpos(p)
         input('何かキーを押してください : ')
-        del self.ttl
+        del ttl
