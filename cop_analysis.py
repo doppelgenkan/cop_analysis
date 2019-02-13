@@ -361,6 +361,7 @@ class COP:
 
     def draw_trajectory(self, **kwargs):
         '''
+        Return None.
         COP軌跡の描画.
 
         Parameters
@@ -429,6 +430,7 @@ class COP:
 
     def draw_time_series(self, **kwargs):
         '''
+        Return None.
         COP時系列の描画.
 
         Parameters
@@ -492,6 +494,7 @@ class COP:
 
     def moveing_cop(self, scale=1, isline=True):
         '''
+        Return None.
         COP動揺のアニメーション.
 
         Parameters
