@@ -492,21 +492,21 @@ class COP:
         plt.show()
 
 
-    def moveing_cop(self, scale=1, isline=True):
+    def moveing_cop(self, scale_ratio=1, isline=True):
         '''
         Return None.
         COP動揺のアニメーション.
 
         Parameters
         __________
-        scale : int or float, optional (1)
+        scale_ratio : int or float, optional (1)
             ウィンドウを600x600ピクセルの何倍に設定するか. デフォルトは1.
         isline : bool, optional (True)
             軌跡を描画するかどうか. デフォルトでは描画する(True).
         '''
-        r = self.transformed_r * 150 * scale
+        r = self.transformed_r * 150 * scale_ratio
         turtle.clearscreen()
-        turtle.setup(width=600 * scale, height=600 * scale)
+        turtle.setup(width=600*scale_ratio, height=600*scale_ratio)
         ttl = turtle.Turtle()
         ttl.reset()
         ttl.shape('circle')
