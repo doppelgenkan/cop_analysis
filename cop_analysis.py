@@ -511,6 +511,7 @@ class COP:
         ttl.reset()
         ttl.shape('circle')
         ttl.shapesize(0.7, 0.7)
+        ttl.fillcolor('red')
         ttl.penup()
         ttl.setpos(r[0])
         if isline:
