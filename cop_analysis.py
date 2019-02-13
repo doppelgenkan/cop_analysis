@@ -506,6 +506,7 @@ class COP:
         '''
         r = self.transformed_r * 180 * scale_ratio
         turtle.clearscreen()
+        turtle.title('COP motion')
         turtle.setup(width=600*scale_ratio, height=600*scale_ratio)
         ttl = turtle.Turtle()
         ttl.reset()
