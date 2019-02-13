@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+import turtle
 
 
 def _cutdata4fft(arr, init=0):
@@ -487,3 +488,33 @@ class COP:
             plt.title(title, loc='left')
         plt.grid()
         plt.show()
+
+
+    def moveing_cop(self, scale=1, isline=True):
+        '''
+        COP動揺のアニメーション.
+
+        Parameters
+        __________
+        scale : int or float, optional (1)
+            ウィンドウを600x600ピクセルの何倍に設定するか. デフォルトは1.
+        isline : bool, optional (True)
+            軌跡を描画するかどうか. デフォルトでは描画する(True).
+        '''
+        r = self.transformed_r * 150 * scale
+        turtle.clearscreen()
+        turtle.setup(width=600 * scale, height=600 * scale)
+        self.ttl = turtle.Turtle()
+        self.ttl.reset()
+        self.ttl.shape('circle')
+        self.ttl.shapesize(0.7, 0.7)
+        self.ttl.penup()
+        self.ttl.setpos(r[0])
+        if isline:
+            self.ttl.pendown()
+        self.ttl.pensize(2)
+        print('COPの運動が終わるまで何もしないでください.')
+        for p in r:
+            self.ttl.setpos(p)
+        input('何かキーを押してください : ')
+        del self.ttl
