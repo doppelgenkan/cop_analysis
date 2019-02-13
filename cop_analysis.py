@@ -516,7 +516,7 @@ class COP:
         if isline:
             self.ttl.pendown()
         self.ttl.pensize(2)
-        print('COPの運動が終わるまで何もしないでください.')
+        print('アニメーションが終わるまで何もしないでください.')
         for p in r:
             self.ttl.setpos(p)
         input('何かキーを押してください : ')
