@@ -504,7 +504,7 @@ class COP:
         isline : bool, optional (True)
             軌跡を描画するかどうか. デフォルトでは描画する(True).
         '''
-        r = self.transformed_r * 150 * scale_ratio
+        r = self.transformed_r * 180 * scale_ratio
         turtle.clearscreen()
         turtle.setup(width=600*scale_ratio, height=600*scale_ratio)
         ttl = turtle.Turtle()
@@ -520,5 +520,5 @@ class COP:
         print('アニメーションが終わるまで何もしないでください.')
         for p in r:
             ttl.setpos(p)
-        input('何かキーを押してください : ')
+        input('[Enter]キーを押してください : ')
         del ttl
