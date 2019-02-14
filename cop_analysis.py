@@ -135,7 +135,7 @@ class COP:
         3 : 年齢
         4 : 身長 [cm]
         5 : 体重 [kgw]
-        6 : 開眼 or 閉眼
+        6 : 開眼(sight) or 閉眼(blind)
         '''
         lis = [self.__df0.iloc[0, 1]]
         if self.__df0.iloc[2,1 ] == '男':
