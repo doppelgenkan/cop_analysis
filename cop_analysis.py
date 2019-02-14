@@ -522,7 +522,7 @@ class COP:
             print('アニメーションが終わるまで何もしないでください.')
             for p in r:
                 ttl.setpos(p)
-            ans = input('入力してください(繰り返す場合は r, それ以外は終了): ')
+            ans = input('入力してください(繰り返す場合はr, 終了の場合はr以外): ')
             if ans != 'r':
                 break
         del ttl
