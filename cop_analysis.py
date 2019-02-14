@@ -509,17 +509,20 @@ class COP:
         turtle.title('COP motion')
         turtle.setup(width=600*scale_ratio, height=600*scale_ratio)
         ttl = turtle.Turtle()
-        ttl.reset()
-        ttl.shape('circle')
-        ttl.shapesize(0.7, 0.7)
-        ttl.fillcolor('red')
-        ttl.penup()
-        ttl.setpos(r[0])
-        if isline:
-            ttl.pendown()
-        ttl.pensize(2)
-        print('アニメーションが終わるまで何もしないでください.')
-        for p in r:
-            ttl.setpos(p)
-        input('[Enter]キーを押してください : ')
+        while True:
+            ttl.reset()
+            ttl.shape('circle')
+            ttl.shapesize(0.7, 0.7)
+            ttl.fillcolor('red')
+            ttl.penup()
+            ttl.setpos(r[0])
+            if isline:
+                ttl.pendown()
+                ttl.pensize(2)
+            print('アニメーションが終わるまで何もしないでください.')
+            for p in r:
+                ttl.setpos(p)
+            ans = input('入力してください(繰り返す場合は r, それ以外は終了): ')
+            if ans != 'r':
+                break
         del ttl
