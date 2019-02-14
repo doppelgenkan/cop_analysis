@@ -389,7 +389,7 @@ class COP:
         title         = kwargs.get('title', None)
         isMKS         = kwargs.get('isMKS', False)
         islegend      = kwargs.get('islegend', False)
-        if istransformed == False:
+        if not istransformed:
             r = self.device_r
             center = self.__pca.mean_
             range_min = np.min(r.T[1]) - center[1]
@@ -408,7 +408,7 @@ class COP:
         y = r.T[1]
         xlab = 'x[cm]'
         ylab = 'y[cm]'
-        if isMKS == True:
+        if isMKS:
             x = x / 100
             y = y / 100
             range_lim = range_lim /100
@@ -420,7 +420,7 @@ class COP:
         plt.ylim(-range_lim + center[1], range_lim + center[1])
         plt.xlabel(xlab)
         plt.ylabel(ylab)
-        if islegend == True:
+        if islegend:
             plt.legend([legend_label])
         if title != None:
             plt.title(title, loc='left')
@@ -466,14 +466,14 @@ class COP:
         if abs(range_min) > range_max:
             range_max = abs(range_min)
         range_lim = range_max * 1.25
-        if isMKS == True:
+        if isMKS:
             x = x / 100
             y = y / 100
             range_lim = range_lim / 100
             ylab = 'COP[m]'
         plt.figure(dpi=dpi, figsize=figsize)
         plt.plot(x, color=color[0])
-        if isdrawy == True:
+        if isdrawy:
             plt.plot(y, color=color[1])
         plt.ylim([-range_lim, range_lim])
         plt.ylabel(ylab)
@@ -481,8 +481,8 @@ class COP:
         time_list = np.arange(self.__init, self.__len//self.__samp_hz + self.__init + 1, 5)
         plt.xticks(seq_list, time_list)
         plt.xlabel('time[sec]')
-        if islegend == True:
-            if isdrawy == True:
+        if islegend:
+            if isdrawy:
                 plt.legend(['x', 'y'])
             else:
                 plt.legend(['x'])
