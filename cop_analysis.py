@@ -118,7 +118,7 @@ class COP:
     def length(self):
         '''
         Return int.
-        COPインスタンスに含まれる各種データの長さ [cm].
+        COPインスタンスに含まれる各種データの長さ.
         '''
         return self.__len
 
