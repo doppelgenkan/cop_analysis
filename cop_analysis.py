@@ -356,6 +356,8 @@ class COP:
         COPインスタンスのオプション引数のリセット.
             cutoff_hz -> 5,  init -> 5
         '''
+        print(f'カットオフ周波数が{self.__cutoff_hz}[Hz]から5[Hz]にリセットされました.')
+        print(f'初期時刻が{self.__init}[sec]から5[sec]にリセットされました.')
         self.__init__(self.__fn)
 
 
